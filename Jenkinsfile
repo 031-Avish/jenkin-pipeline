@@ -28,13 +28,14 @@ pipeline{
                 branch 'main'
             }
             steps{
-                timeout(time: 30, unit: 'MINUTES') { // Timeout after 30 minutes
+                timeout(time: 30, unit: 'MINUTES') 
+                {
                     input message: "Approve deployment to apply Terraform changes?", ok: "Yes"
-
-                echo 'approved '
+                }
+                echo 'approved'
             }
+
+
         }
-
-
     }
 }
