@@ -35,7 +35,7 @@ pipeline{
                 {
                     input message: "Approve deployment to apply Terraform changes?", ok: "Yes"
                 }
-                echo 'approved'
+                echo 'approved with changes'
             }
         }
     }
