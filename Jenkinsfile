@@ -26,7 +26,9 @@ pipeline{
         stage('apply')
         {
             when { 
-                env.BRANCH_NAME == "origin/main" 
+                expression { 
+                    return env.GIT_BRANCH == "origin/main"
+                }
             }
             steps{
                 timeout(time: 30, unit: 'MINUTES') 
@@ -35,8 +37,6 @@ pipeline{
                 }
                 echo 'approved'
             }
-
-
         }
     }
 }
