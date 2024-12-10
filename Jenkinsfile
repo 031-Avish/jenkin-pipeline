@@ -25,8 +25,8 @@ pipeline{
 
         stage('apply')
         {
-            when {
-                branch 'main'
+            when { 
+                env.BRANCH_NAME == "origin/main" 
             }
             steps{
                 timeout(time: 30, unit: 'MINUTES') 
