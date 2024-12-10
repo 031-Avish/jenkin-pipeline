@@ -11,10 +11,30 @@ pipeline{
     stages{
         stage('init'){
             steps{
-                echo "${AWS_ACCESS_KEY_ID}"
                 sh 'terraform init'
-                sh 'aws s3 ls'
             }
         }
+
+        stage('plan')
+        {
+            steps{
+                sh 'terraform plan'
+            }
+        }
+
+        stage('apply')
+        {
+            when {
+                branch 'main'
+            }
+            steps{
+                timeout(time: 30, unit: 'MINUTES') { // Timeout after 30 minutes
+                    input message: "Approve deployment to apply Terraform changes?", ok: "Yes"
+
+                echo 'approved '
+            }
+        }
+
+
     }
 }
