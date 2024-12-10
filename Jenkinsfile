@@ -11,7 +11,7 @@ pipeline{
     stages{
         stage('init'){
             steps{
-                echo $AWS_ACCESS_KEY_ID
+                echo ${AWS_ACCESS_KEY_ID}
                 sh 'terraform init'
                 sh 'aws s3 ls'
             }
