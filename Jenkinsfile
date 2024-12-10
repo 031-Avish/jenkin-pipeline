@@ -11,6 +11,7 @@ pipeline{
     stages{
         stage('init'){
             steps{
+                echo "Current branch is: ${env.GIT_BRANCH}"
                 sh 'terraform init'
             }
         }
